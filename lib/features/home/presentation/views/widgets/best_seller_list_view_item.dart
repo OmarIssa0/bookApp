@@ -1,8 +1,6 @@
 import 'package:book_app/core/utils/styles.dart';
 import 'package:book_app/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../constants.dart';
 import '../../../../../core/utils/assets.dart';
 
