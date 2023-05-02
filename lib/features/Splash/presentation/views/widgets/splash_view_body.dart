@@ -1,6 +1,6 @@
 import 'package:book_app/core/utils/app_routter.dart';
 import 'package:book_app/core/utils/assets.dart';
-import 'package:book_app/features/Splash/presentation/views/widgets/silding_text.dart';
+import 'package:book_app/features/splash/presentation/views/widgets/silding_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
