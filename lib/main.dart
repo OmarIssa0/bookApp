@@ -1,11 +1,20 @@
 import 'package:book_app/constants.dart';
+import 'package:book_app/core/utils/api_service.dart';
 import 'package:book_app/core/utils/app_routter.dart';
+import 'package:book_app/core/utils/service_locator.dart';
+import 'package:book_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:book_app/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:book_app/features/home/presentation/manger/newset_books_cubit/newset_book_cubit.dart';
+import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(
     const BooklyApp(),
   );
@@ -16,14 +25,29 @@ class BooklyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      theme: ThemeData.dark().copyWith(
-        useMaterial3: true,
-        scaffoldBackgroundColor: kPrimaryColor,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FeaturedBooksCubit(
+            getIt.get<HomeRepoImpl>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => NewsetBookCubit(
+            getIt.get<HomeRepoImpl>(),
+          ),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        theme: ThemeData.dark().copyWith(
+          useMaterial3: true,
+          scaffoldBackgroundColor: kPrimaryColor,
+          textTheme:
+              GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        ),
+        debugShowCheckedModeBanner: false,
       ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
