@@ -16,7 +16,10 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: const CustomBookImage(),
+          child: const CustomBookImage(
+            imageUrl:
+                'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png',
+          ),
         ),
         const SizedBox(
           height: 43,
